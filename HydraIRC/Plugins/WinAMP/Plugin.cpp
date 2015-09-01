@@ -1,40 +1,23 @@
-/*
-
-  HydraIRC
-  Copyright (C) 2002-2006 Dominic Clifton aka Hydra
-
-  HydraIRC limited-use source license
-
-  1) You can:
-  1.1) Use the source to create improvements and bug-fixes to send to the
-       author to be incorporated in the main program.
-  1.2) Use it for review/educational purposes.
-
-  2) You can NOT:
-  2.1) Use the source to create derivative works. (That is, you can't release
-       your own version of HydraIRC with your changes in it)
-  2.2) Compile your own version and sell it.
-  2.3) Distribute unmodified, modified source or compiled versions of HydraIRC
-       without first obtaining permission from the author. (I want one place
-       for people to come to get HydraIRC from)
-  2.4) Use any of the code or other part of HydraIRC in anything other than 
-       HydraIRC.
-       
-  3) All code submitted to the project:
-  3.1) Must not be covered by any license that conflicts with this license 
-       (e.g. GPL code)
-  3.2) Will become the property of the author.
-
-*/
-
 // Plugin.cpp : An example HydraIRC plugin
 //
 
 #include "stdafx.h"
-//#include <stdio.h>
 #include "resource.h"
 
+// begin mod dxzl 8/2015
+#include <atlbase.h>
+#include <windows.h>
+#include <commctrl.h>
+// end mod dxzl 8/2015
+
 #include <CList.h>
+
+// begin mod dxzl 8/2015
+#include <atlapp.h>
+#include <atluser.h>
+#include <atlctrls.h>
+// end mod dxzl 8/2015
+
 #include <HydraIRCCommon.h>
 #include <HydraIRCPlugin.h>
 #include <API_Basic.h>
@@ -64,7 +47,7 @@ using std::endl;
 using std::ios;
 using std::ifstream;
 
-CAppModule _Module;
+//CAppModule _Module;
 
 #define MAX_COMMAND_BUFFER 1024
 
@@ -411,6 +394,14 @@ BOOL Plugin_ProcessChannelCommand(int ServerID, int ChannelID, char **Command, c
   if (stricmp(*Command,"WINAMP") == 0)
   {
     WinampDisplay();
+
+  // S.S. Can't deduce how to make this work as yet :)
+  //if (ChannelID) 
+  //{
+  //  // Send it to the channel!
+  //  HydraIRC_CMD_ChannelMsg(ChannelID,"Message");
+  //}
+
     Processed = TRUE;
   }
 
@@ -529,7 +520,7 @@ void CPlugin::OnActivate( void )
     sys_Printf(BIC_ERROR,"%s: Failed to get imagelist!\n",Plugin.m_Name);
   */
 
-#ifdef HYDRAIRC_0.3.163
+#ifdef HYDRAIRC_0_3_163
 /*
   In HydraIRC <= 0.3.163 HydraIRC_GetToolbar returned the HWND of the toolbar itself
   but attachking a ReBar and Using GetBandInfo no-longer worked (probably due to WTL 8 changes)

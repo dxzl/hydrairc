@@ -1,4 +1,5 @@
 HydraIRC                                          
+(Update for Visual Studio 2015 Community Edition by dxzl 8/31/2015)
 ==============================================================================
 
 Noob?

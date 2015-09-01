@@ -193,6 +193,28 @@ BOOL HydraIRC_GetChannelInfo(int ChannelID, HIRC_ChannelInfo_t *pCI)
   return TRUE;
 }
 
+// begin mod dxzl 8/2015
+BOOL HydraIRC_GetQueryInfo(int QueryID, HIRC_QueryInfo_t *pQI)
+{
+  if (!pQI)
+    return FALSE;
+
+  IRCQuery *pQuery = FindQueryByID(QueryID);
+  if (!pQuery)
+    return FALSE;
+
+  memset(pQI,0,sizeof(HIRC_QueryInfo_t));
+
+  pQI->Mask = 0;
+  pQI->OtherNick = pQuery->m_OtherNick;
+
+  // Set the mask, depending on the respective values
+  if (pQI->OtherNick) pQI->Mask |= HIRC_QI_OTHERNICK;
+
+  return TRUE;
+}
+// end mod dxzl 8/2015
+
 BOOL HydraIRC_GetServerInfo(int ServerID, HIRC_ServerInfo_t *pSI)
 {
   if (!pSI)
@@ -929,6 +951,12 @@ int CPluginManager::UnloadByName(const char *PluginName, const BOOL Force, const
 // My knowledge of function pointers and typecasting them is limited, so 
 // if you see i'm doing something not quite right, please let me know.
 // however, this is a cool little function :)
+
+// dxzl - Initially called with pPlugin and pNode NULL to initialize... searches
+// each plugin's APIs for the requested function that matches the specified API
+// then returns the function and the current plugin/node. The next time it's called
+// (if the function found did not handle the command) it picks up where it left off.
+
 FUNCPTR CPluginManager::GetFunction(const int API, const int TableOffset,HydraIRCPlugin **pPlugin, CNode **pNode )
 {
   //HydraIRCPlugin *pPlugin;
@@ -1037,6 +1065,11 @@ BOOL CBasicPlugin::GetAPI(APIDescriptor_t *pAPID)
       pTable->m_pfnHydraIRC_GetNewImageListID = HydraIRC_GetNewImageListID;
       pTable->m_pfnHydraIRC_ReleaseImageListID = HydraIRC_ReleaseImageListID;
       pTable->m_pfnHydraIRC_AliasProcessor = AliasProcessor;
+
+      // begin mod dxzl 8/2015
+      pTable->m_pfnHydraIRC_GetQueryInfo = HydraIRC_GetQueryInfo;
+      // end mod dxzl 12/2015
+
       return TRUE;
       break;
     // process more API's here...

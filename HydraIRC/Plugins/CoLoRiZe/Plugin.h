@@ -3,6 +3,9 @@
   HydraIRC
   Copyright (C) 2002-2006 Dominic Clifton aka Hydra
 
+  CoLoRiZe Plugin by Dxzl, 2015
+  www.YahCoLoRiZe.com
+
   HydraIRC limited-use source license
 
   1) You can:
@@ -27,42 +30,32 @@
 
 */
 
-// stdafx.h : include file for standard system include files,
-// or project specific include files that are used frequently, but
-// are changed infrequently
-//
-
 #pragma once
 
-#define WINVER		0x0500
-#define _WIN32_IE	0x0501
-#define _RICHEDIT_VER	0x0300
+class CHydraColorizeMsgPump;
 
-// begin mod dxzl 8/30/2015
-// Add this in atldef.h to keep newer atl from calling LCMapStringEx()
-// (which is only on Vista and up...)
-#define _ATL_XP_TARGETING
-// end mod dxzl 8/30/2015
+class CPlugin : public HydraIRCPlugin
+{
+private:
 
-#define WIN32_LEAN_AND_MEAN		// Exclude rarely-used stuff from Windows headers
-// Windows Header Files:
-#include <atlbase.h>
+  HWND CPlugin::GetColorizeHandle(void);
 
-// TODO: reference additional headers your program requires here
-// ATL/GUI includes start here
-#include <atlcom.h>
+public:
 
-#include <atlapp.h>
-extern CAppModule _Module;
+  CHydraColorizeMsgPump* pWndHidden;
+  HWND m_hWndHidden;
 
-#include <atlwin.h>
-#include <atlframe.h>
-#include <atlctrls.h>
-//#include <atlctrlx.h>
-#include <atldlgs.h>
-#include <atlctrlw.h>
-#include <atlsplit.h>
-#include <atlmisc.h>
+  CPlugin(void);
+  ~CPlugin(void) { };
 
-// enable shorthand use of functions
-#define USE_BASICTABLE_DEFINE
+  BOOL RequestAPIs( void );
+  void OnActivate( void );
+  void OnDeactivate( void );
+  BOOL OnRequestUnload( void );
+
+  BOOL GetAPI(APIDescriptor_t *pAPID);
+
+  void strlower(char* p);
+};
+
+PLUGIN_API HydraIRCPlugin *Init(void);

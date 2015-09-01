@@ -361,8 +361,12 @@ protected:
 public:
 	// NOTE: These are here for backwards compatibility.
 	//  Use the new CTFI_NONE, CTFI_RECT, etc.
-	typedef enum FieldFlags
-	{
+
+  // begin mod dxzl 8/30/2015
+  // typedef enum FieldFlags
+  enum FieldFlags
+  // end mod dxzl 8/30/2015
+  {
 		eCustomTabItem_None    = CTFI_NONE,
 		eCustomTabItem_Rect    = CTFI_RECT,
 		eCustomTabItem_Image   = CTFI_IMAGE,
@@ -559,8 +563,12 @@ protected:
 public:
 	// NOTE: This is here for backwards compatibility.
 	//  Use the new CTFI_TABVIEW instead
-	typedef enum FieldFlags
-	{
+
+  // begin mod dxzl 8/30/2015
+  // typedef enum FieldFlags
+  enum FieldFlags
+  // end mod dxzl 8/30/2015
+  {
 		eCustomTabItem_TabView = CTFI_TABVIEW,
 	};
 

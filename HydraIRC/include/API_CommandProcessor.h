@@ -29,12 +29,14 @@
 
 #define PLUGIN_API_CMDPROC 1
 
-typedef BOOL (* PFN_PROCESSINPUT) (int ServerID, int ChannelID, char **Command);
-typedef BOOL (* PFN_PROCESSCOMMAND) (int ServerID, int ChannelID, char **Command, char **Args);
+// begin mod dxzl 8/2015
+typedef BOOL (* PFN_PROCESSINPUT) (int ServerID, int ChanQueryID, char **Command);
+typedef BOOL (* PFN_PROCESSCOMMAND) (int ServerID, int ChanQueryID, char **Command, char **Args);
 typedef BOOL (* PFN_PROCESSCHANNELCOMMAND) (int ServerID, int ChannelID, char **Command, char **Args);
 typedef BOOL (* PFN_PROCESSSERVERCOMMAND) (int ServerID, char **Command, char **Args);
 typedef BOOL (* PFN_PROCESSDCCINPUT) (int ServerID, char **Command, char **Args);
-typedef BOOL (* PFN_PROCESSQUERYINPUT) (int ServerID, char **Command, char **Args);
+typedef BOOL (* PFN_PROCESSQUERYINPUT) (int ServerID, int QueryID, char **Command, char **Args);
+// end mod dxzl 8/2015
 
 struct PluginCmdProcTable
 {

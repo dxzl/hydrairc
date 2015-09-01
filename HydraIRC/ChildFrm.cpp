@@ -2282,7 +2282,10 @@ void CChildFrame::CheckPluginProcessing(char *Buffer, DWORD Mode)
         do {
           pfn_Func = (PFN_PROCESSQUERYINPUT)g_pPluginManager->GetFunction(PLUGIN_API_CMDPROC,PLUGIN_CMDPROC_PROCESSQUERYINPUT,&pPlugin,&pNode);
           if (pfn_Func != NULL) {
-            Handled = pfn_Func(m_ServerID,&Command,&Args);
+          // begin mod dxzl 8/2015
+          //  Handled = pfn_Func(m_ServerID,&Command,&Args);
+            Handled = pfn_Func(m_ServerID,m_QueryID,&Command,&Args);
+          // end mod S.S. 8/2015
           }
         } while (!Handled && (HydraIRCPlugin*)(pPlugin)->m_Next);
       }
@@ -2326,15 +2329,14 @@ void CChildFrame::ProcessTextInput(char *Buffer,BOOL Parse)
   BOOL Handled = FALSE;
   // Handled = Plugins->ProcessInput(command);
 
-
-  // Heh,  this is totally sweet...
-  // We keep calling CPluginManager::GetFunction() until it
-  // returns NULL (which means, no more plugins that provide the function
-  // we want)
-  // If it does return a pointer to a function then we call it and we
-  // set the Handled flag to it's return value.
+  // dxzl -
+  // For every plugin that returns a pointer to a function, we call the function
+  // and set the Handled flag to it's return value. If it's "Handled" we quit iterating.
   HydraIRCPlugin *pPlugin = NULL;
   CNode *pNode = NULL;
+
+  // dxzl - Combine Channel or Query ID. ChannelID is positive, QueryID is negative...
+  int chanQueryID = (m_WindowType == CWTYPE_QUERY && m_QueryID >= 0) ? -m_QueryID : m_ChannelID;
 
   if (Parse)
   {
@@ -2345,9 +2347,21 @@ void CChildFrame::ProcessTextInput(char *Buffer,BOOL Parse)
 
       if (pfn_Func != NULL)
       {
-        Handled = pfn_Func(m_ServerID,m_ChannelID,&BufferCopy);
-      }
-    } while (!Handled && pfn_Func != NULL);
+       // begin mod dxzl 8/2015
+        // Modified to allow m_QueryID to get to our plugin...
+        // !!!!! QueryIDs will all be negative, ChannelIDs positive !!!!!
+        // Handled = pfn_Func(m_ServerID,m_ChannelID,&BufferCopy);
+        Handled = pfn_Func(m_ServerID,chanQueryID,&BufferCopy);
+        // end mod dxzl 8/2015
+       }
+    // begin mod - dxzl - 8/2015
+    // Problem is that the loop quits when ANY plugin returns a null pointer to the
+    // function my plugin is seeking. So the function-hook never got called for
+    // my plugin. The loop should check ALL plugins and call EVERY non-null
+    // table entry's function until "Handled" is set.
+    // } while (!Handled && pfn_Func != NULL);
+    } while (!Handled && (HydraIRCPlugin*)(pPlugin)->m_Next);
+    // end mod - dxzl - 8/2015
   }
 
   char *BufferPtr = BufferCopy;
@@ -2387,7 +2401,10 @@ void CChildFrame::ProcessTextInput(char *Buffer,BOOL Parse)
                 {
                   Handled = pfn_Func(m_ServerID,m_ChannelID,&Command,&Args);
                 }
-              } while (!Handled && pfn_Func != NULL);
+              // begin mod dxzl 8/2015
+              // } while (!Handled && pfn_Func != NULL);
+              } while (!Handled && (HydraIRCPlugin*)(pPlugin)->m_Next);
+              // end mod dxzl 12/2015
             }
             break;
           case CWTYPE_SERVER:
@@ -2403,17 +2420,49 @@ void CChildFrame::ProcessTextInput(char *Buffer,BOOL Parse)
                 {
                   Handled = pfn_Func(m_ServerID,&Command,&Args);
                 }
-              } while (!Handled && pfn_Func != NULL);
+              // begin mod dxzl 8/2015
+              // } while (!Handled && pfn_Func != NULL);
+              } while (!Handled && (HydraIRCPlugin*)(pPlugin)->m_Next);
+              // end mod dxzl 12/2015
             }
             break;
           case CWTYPE_DCCCHAT:
             {
-              // TODO!
+              // Process DCC commands
+
+              // begin mod dxzl 8/2015
+              PFN_PROCESSDCCINPUT pfn_Func;
+              do
+              {
+                pfn_Func = (PFN_PROCESSDCCINPUT)g_pPluginManager->GetFunction(PLUGIN_API_CMDPROC,PLUGIN_CMDPROC_PROCESSDCCINPUT,&pPlugin,&pNode);
+
+                if (pfn_Func != NULL)
+                {
+                  Handled = pfn_Func(m_ServerID,&Command,&Args);
+                }
+              // } while (!Handled && pfn_Func != NULL);
+              } while (!Handled && (HydraIRCPlugin*)(pPlugin)->m_Next);
+              // end mod dxzl 8/2015
             }
             break;
           case CWTYPE_QUERY:
             {
-              // TODO!
+              // Process query commands
+
+              // begin mod dxzl 8/2015
+              PFN_PROCESSQUERYINPUT pfn_Func;
+              do
+              {
+                pfn_Func = (PFN_PROCESSQUERYINPUT)g_pPluginManager->GetFunction(PLUGIN_API_CMDPROC,PLUGIN_CMDPROC_PROCESSQUERYINPUT,&pPlugin,&pNode);
+
+                if (pfn_Func != NULL)
+                {
+                  //Handled = pfn_Func(m_ServerID,&Command,&Args);
+                  Handled = pfn_Func(m_ServerID,m_QueryID,&Command,&Args);
+                }
+              // } while (!Handled && pfn_Func != NULL);
+              } while (!Handled && (HydraIRCPlugin*)(pPlugin)->m_Next);
+              // end mod dxzl 8/2015
             }
             break;
 
@@ -2433,9 +2482,15 @@ void CChildFrame::ProcessTextInput(char *Buffer,BOOL Parse)
 
             if (pfn_Func != NULL)
             {
-              Handled = pfn_Func(m_ServerID,m_ChannelID,&Command,&Args);
+              // begin mod dxzl 8/2015
+              //Handled = pfn_Func(m_ServerID,m_ChannelID,&Command,&Args);
+              Handled = pfn_Func(m_ServerID,chanQueryID,&Command,&Args);
+              // end mod dxzl 12/2015
             }
-          } while (!Handled && pfn_Func != NULL);
+          // begin mod dxzl 8/2015
+          // } while (!Handled && pfn_Func != NULL);
+          } while (!Handled && (HydraIRCPlugin*)(pPlugin)->m_Next);
+          // end mod dxzl 12/2015
 
           Handled = ProcessCommand(Command,Args);
         }

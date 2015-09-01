@@ -1,7 +1,3 @@
-; begin mod dxzl 8/2015
-!addplugindir ".\plugins\x86-ansi"
-; end mod dxzl 8/2015
-
 ;NSIS installer script for HydraIRC
 ;for NSIS version 2.03
 ;Modern User Interface version 1.67
@@ -11,13 +7,6 @@
 ;ToDo:
 ; - Can't think of anything else atm, maybe custom incons for (un-)*.exe's ?
 ; - Suggestions are very welcome.
-;
-;Revision 0.8  August 2015
-; dxzl
-; - Added UAC stuff to make Hydra's first launch after install User level
-; instead of Admin level (the level the installer is running at). This is
-; needed for Windows 7, 8, 10... (see below). Use with nsis-3.0b2. Bumped
-; up the rev to 0.3.165
 ;
 ;Revision 0.7  February 2004
 ; Hydra
@@ -80,14 +69,16 @@
 
 ;Here we go! Installer script starts here :)
 !define PRODUCT "HydraIRC"
+; begin mod dxzl 8/30/2015
 !define VERSION "0.3.165"
+; end mod dxzl 8/30/2015
 Name "${PRODUCT}"
 
 ;Installer will be compiled into. Don't forget to update VERSION above!
-;OutFile ..\Distribution\${PRODUCT}-v${VERSION}-Release.exe
-OutFile ..\Distribution\${PRODUCT}-v${VERSION}-TestVS2015.exe
+OutFile ..\Distribution\${PRODUCT}-v${VERSION}-Release.exe
+;OutFile ..\Distribution\${PRODUCT}-v${VERSION}-TestXP.exe
 ;OutFile ..\Distribution\${PRODUCT}-v${VERSION}-Debug.exe
-  
+
 ;<start> Installer Configuration
 ;-------------------------------
 ;SetCompressor lzma ;Compression to use
@@ -106,43 +97,7 @@ InstallDirRegKey HKLM "SOFTWARE\HydraProductions\${PRODUCT}" "InstallPath"
 
 ;<start> Modern UI Configuration
 ;-------------------------------
-; begin mod dxzl 8/2015
-; Changes I've added allow HydraIRC to launch in user-level access after installing
-; instead of admin-level. this is important on Windows 7, 8, 10 because of security
-; scans Windows does AND because if it runs at a different level its user settings
-; will be stored in the wrong place AND it may not be able to use WM_COPYDATA to talk
-; with my YahCoLoRiZe Plugin for Hydra if YahCoLoRiZe runs as user and HydraIRC is
-; running as admin.
-;!include "MUI.nsh"
-!include "MUI2.nsh"
-!include "UAC.nsh"
-!include "InstallOptions.nsh"
-
-!macro Init thing
-  uac_tryagain:
-  !insertmacro UAC_RunElevated
-  ${Switch} $0
-  ${Case} 0
-    ${IfThen} $1 = 1 ${|} Quit ${|} ;we are the outer process, the inner process has done its work, we are done
-    ${IfThen} $3 <> 0 ${|} ${Break} ${|} ;we are admin, let the show go on
-    ${If} $1 = 3 ;RunAs completed successfully, but with a non-admin user
-      MessageBox mb_YesNo|mb_IconExclamation|mb_TopMost|mb_SetForeground "This ${thing} requires admin privileges, try again" /SD IDNO IDYES uac_tryagain IDNO 0
-    ${EndIf}
-    ;fall-through and die
-  ${Case} 1223
-    MessageBox mb_IconStop|mb_TopMost|mb_SetForeground "This ${thing} requires admin privileges, aborting!"
-    Quit
-  ${Case} 1062
-    MessageBox mb_IconStop|mb_TopMost|mb_SetForeground "Logon service not running, aborting!"
-    Quit
-  ${Default}
-    MessageBox mb_IconStop|mb_TopMost|mb_SetForeground "Unable to elevate, error $0"
-    Quit
-  ${EndSwitch}
-
-  SetShellVarContext all
-!macroend
-; end mod dxzl 8/2015
+!include "MUI.nsh"
 
 !define MUI_HEADERIMAGE
 !define MUI_HEADERIMAGE_BITMAP "header.bmp"
@@ -151,7 +106,7 @@ InstallDirRegKey HKLM "SOFTWARE\HydraProductions\${PRODUCT}" "InstallPath"
 !define MUI_ABORTWARNING ;confirmation on cancel
 !define MUI_COMPONENTSPAGE_SMALLDESC ;makes Descriptions go under Options
 !define MUI_FINISHPAGE_NOAUTOCLOSE ;prevents from jumping to Finish page
-!define MUI_FINISHPAGE_RUN "$INSTDIR\hydrairc.exe" ;checkbox to run the prog (will now run at User level on Win 7, 8 10)
+!define MUI_FINISHPAGE_RUN "$INSTDIR\hydrairc.exe" ;checkbox to run the prog
 !define MUI_FINISHPAGE_SHOWREADME "$INSTDIR\changes.txt" ;checkbox to see a file
 !define MUI_FINISHPAGE_SHOWREADME_TEXT "View Latest Changes"
 !define MUI_FINISHPAGE_LINK "Visit ${PRODUCT} Web-Site"
@@ -221,13 +176,12 @@ Section "${PRODUCT} Main Program Files (Required)" SecCore
   WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\${PRODUCT}" "DisplayVersion" "${VERSION}"
   WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\${PRODUCT}" "InstallDate" "${__DATE__}"
   WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\${PRODUCT}" "HelpLink" "http://www.hydrairc.com/wiki/"
-  WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\${PRODUCT}" "Contact" "#hydrairc@Freenode"
+  WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\${PRODUCT}" "Contact" "#hydrairc@EFnet"
   WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\${PRODUCT}" "Publisher" "Hydra Productions"
   WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\${PRODUCT}" "URLInfoAbout" "http://www.hydrairc.com"
-  WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\${PRODUCT}" "URLUpdateInfo" "http://www.yahcolorize.com/#HydraIRC"
+  WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\${PRODUCT}" "URLUpdateInfo" "http://www.hydrairc.com"
   WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\${PRODUCT}" "Readme" "$INSTDIR\readme.txt"
-  ;WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\${PRODUCT}" "Comments" "The Professional IRC Client"
-  WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\${PRODUCT}" "Comments" "GitHub Fork of HydraIRC by Dxzl"
+  WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\${PRODUCT}" "Comments" "The Professional IRC Client"
   WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\${PRODUCT}" "InstallLocation" "$INSTDIR"
   ;Create uninstaller itself
   WriteUninstaller "uninstall.exe"
@@ -340,24 +294,24 @@ Function myPreFinishFunction
   ;Checking if Run box was previously checked
   ReadRegStr $0 HKCU "SOFTWARE\HydraProductions\${PRODUCT}" "FinishRun"
   StrCmp $0 "No" +1 +2
-  !insertmacro INSTALLOPTIONS_WRITE "ioSpecial.ini" "Field 4" "STATE" "0"
+  !insertmacro MUI_INSTALLOPTIONS_WRITE "ioSpecial.ini" "Field 4" "STATE" "0"
   ;Checking if Read box was previously checked
   ReadRegStr $0 HKCU "SOFTWARE\HydraProductions\${PRODUCT}" "FinishRead"
   StrCmp $0 "No" +1 +2
-  !insertmacro INSTALLOPTIONS_WRITE "ioSpecial.ini" "Field 5" "STATE" "0"
+  !insertmacro MUI_INSTALLOPTIONS_WRITE "ioSpecial.ini" "Field 5" "STATE" "0"
   ;To remove Cancel button from the FINISH page
-  !insertmacro INSTALLOPTIONS_WRITE "ioSpecial.ini" "Settings" "CancelShow" "0"
+  !insertmacro MUI_INSTALLOPTIONS_WRITE "ioSpecial.ini" "Settings" "CancelShow" "0"
 FunctionEnd
 
 Function myLeaveFinishFunction
   ;Remembering if Run box was checked during this instaltion
-  !insertmacro INSTALLOPTIONS_READ $0 "ioSpecial.ini" "Field 4" "STATE"
+  !insertmacro MUI_INSTALLOPTIONS_READ $0 "ioSpecial.ini" "Field 4" "STATE"
   StrCmp $0 "0" +1 +2
   WriteRegStr HKCU "SOFTWARE\HydraProductions\${PRODUCT}" "FinishRun" "No"
   StrCmp $0 "1" +1 +2
   WriteRegStr HKCU "SOFTWARE\HydraProductions\${PRODUCT}" "FinishRun" "Yes"
   ;Remembering if Read box was checked during this instaltion
-  !insertmacro INSTALLOPTIONS_READ $0 "ioSpecial.ini" "Field 5" "STATE"
+  !insertmacro MUI_INSTALLOPTIONS_READ $0 "ioSpecial.ini" "Field 5" "STATE"
   StrCmp $0 "0" +1 +2
   WriteRegStr HKCU "SOFTWARE\HydraProductions\${PRODUCT}" "FinishRead" "No"
   StrCmp $0 "1" +1 +2

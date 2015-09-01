@@ -59,6 +59,10 @@ typedef void (* PFN_HYDRAIRCRELEASEIMAGELISTID) (const int ID);
 
 typedef char *(* PFN_HYDRAIRCALIASPROCESSOR) (char *Input, char *Alias, int InputTokenBuffers, char EscapeCharacter ,char **SubsitutionTable);
 
+// begin mod dxzl 8/2015
+typedef BOOL (* PFN_HYDRAIRCGETQUERYINFO) (const int QueryID, HIRC_QueryInfo_t *pQI);
+// end mod dxzl 8/2015
+
 struct PluginBasicTable
 {
   PFN_SYSPRINTF m_pfnsys_Printf;
@@ -88,6 +92,9 @@ struct PluginBasicTable
   PFN_HYDRAIRCGETNEWIMAGELISTID m_pfnHydraIRC_GetNewImageListID;
   PFN_HYDRAIRCRELEASEIMAGELISTID m_pfnHydraIRC_ReleaseImageListID;
   PFN_HYDRAIRCALIASPROCESSOR m_pfnHydraIRC_AliasProcessor;
+  // begin mod dxzl 8/2015
+  PFN_HYDRAIRCGETQUERYINFO m_pfnHydraIRC_GetQueryInfo;
+  // end mod dxzl 8/2015
 };
 
 // define this for shorthand use
@@ -123,5 +130,9 @@ struct PluginBasicTable
 #define HydraIRC_ReleaseImageListID  __BASICTABLENAME.m_pfnHydraIRC_ReleaseImageListID
 
 #define HydraIRC_AliasProcessor      __BASICTABLENAME.m_pfnHydraIRC_AliasProcessor
+
+// begin mod S.S. 12/2013
+#define HydraIRC_GetQueryInfo        __BASICTABLENAME.m_pfnHydraIRC_GetQueryInfo
+// end mod S.S. 12/2013
 
 #endif

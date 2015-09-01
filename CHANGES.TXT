@@ -1,3 +1,49 @@
+---------------------------------------------------------------------------------------
+UNRELEASED TEST-VERSION PENDING THE ORIGINAL AUTHOR'S APPROVAL - USE AT YOUR OWN RISK!
+
+- This is an experimental version for Windows 7, 8 and 10 by Dxzl!
+- You can find Hydra's original version at www.hydrairc.com
+---------------------------------------------------------------------------------------
+DISCLAIMER 8/31/2015: This is NOT a new distribution of HydraIRC or a derivative
+work and there has been no modification of the original author's limited-use
+source license (which dates back to 2006). The author released his project on GitHub,
+possibly with the intention of making it open-source, and may just have not gotten
+around to changing the license-header in all of the source-files, but I had to make
+a few changes and do one bug-fix so the HydraIRC chat-client would work with my own
+program, YahCoLoRiZe. And in doing that, I had to upgrade the project to work
+with current software tools and libraries (a significant amount of work).
+So, for the time-being, this repository is NOT for distribution without permission
+from Dominic Clifton (aka Hydra). I also wrote my own plugin for HydraIRC which is
+included in my GitHub branch of a fork off the original HydraIRC project. My own work
+on HydraIRC is freely-distributable and is "open-source". My fork of HydraIRC is
+my first attempt to use GitHub and is an unreleased work-in-progress...
+
+WHAT I'VE CHANGED:
+
+1) compiles with Visual Studio 2015 Community edition using newer ATL/WTL
+libraries
+
+2) rebuilt the libxml libraries with the latest version and included the binaries
+
+3) includes my own plugin that works with YahCoLoRiZe (Colorize.dll)
+
+4) installer-script for NSIS now works with UAC and nsis-3.0b2. UAC allows Hydra to
+be launched in user-mode instead of admin after install so that your settings get
+stored to the right place and so that Windows 10 security doesn't freak-out.
+
+5) fixes a bug that aborted servicing of plugin-functions for remaining plugins if
+any single plugin did not implement a particular function (if it returned a NULL
+pointer). This change is in ChildFrm.cpp
+
+6) plugins now have access to the Query window ID instead of just the channel
+window ID. this was to allow YahCoLoRiZe to receive /cx text commands from
+a user in a query-session and to then send colorized text back to the proper
+window.
+
+- dxzl (aka Scott): dxzl@live.com.
+---------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------
+
 CHANGES.TXT
 ===========
 There is lots of good information about HydraIRC in here, if you can't
@@ -15,18 +61,7 @@ Key:
   (name) - the name of the person running HydraIRC who first reported
   the problem or requested the feature
 
-25/April/2008 - AM (0.3.166) - Experimental
-  Medlir
-  + Fixed DCC connect issue with some IP addresses, if you had a problem with DCC file transfers
-    in HydraIRC please try again as this issue affected everyone that had an IP address that
-    started with a number over 127.x.x.x
-
-
-12/December/2008 - PM (0.3.165) - Released
-  + Fixing remote DoS exploit in the parsing code for long irc:// urls when hydrairc's
-    url handler is enabled.
-
-25/July/2008 - PM (0.3.164) - Released
+25/July/2008 - PM (0.3.164) - Experimental
   * Added /listplugins - outputs plugin information to "Output" view.   
   + Made the winamp button appear on the toolbar again (broken in 0.3.162)
   * Stripping of winamp tag changed in order to be compatible with Media Monkey (finally!)

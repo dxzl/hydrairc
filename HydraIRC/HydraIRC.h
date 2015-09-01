@@ -134,6 +134,9 @@ IRCQuery *FindIRCQuery(HWND hWnd);
 IRCServer *FindServerOnNetwork(int NetworkID);
 IRCServer *FindServerByName(char *Name, int port = -1);
 IRCServer *FindServerByID(int ServerID);
+// begin mod dxzl 8/2015
+IRCQuery *FindQueryByID(int QueryID);
+// end mod dxzl 8/2015
 IRCChannel *FindChannelByID(int ChannelID);
 int GetConnectedServerCount( void );
 void sys_Printf(int Contents, const char *format, ...); // this logs to a console log too (if console logging enabled)

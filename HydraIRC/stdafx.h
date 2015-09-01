@@ -1,3 +1,7 @@
+// The GitHub Readme.md (as of 9/1/2015) says this entire project IS
+// now under GPL and the OLD source-code license headers (below) are
+// out-of-date! - dxzl
+
 /*
 
   HydraIRC
@@ -26,6 +30,20 @@
   3.2) Will become the property of the author.
 
 */
+
+// BEFORE DOING ANYTHING, read the README.txt files in:
+// hydrairc\HydraIRC\atlmfc
+// hydrairc\HydraIRC\ATLServer
+// hydrairc\HydraIRC\wtl
+// hydrairc\HydraIRC\libs\libxml2
+// hydrairc\Installer
+
+// You will need to download and install:
+// Visual Studio 2015 Community: https://www.visualstudio.com/en-us/products/visual-studio-community-vs.aspx
+// ATLServer: https://atlserver.codeplex.com/downloads/get/11220
+// WTL: http://sourceforge.net/projects/wtl/
+// Windows 10 SDK (POSSIBLY): https://dev.windows.com/en-us/downloads/windows-10-sdk
+// libxml2 "GNOME" version from github.com: https://github.com/GNOME/libxml2
 
 // stdafx.h : include file for standard system include files,
 //  or project specific include files that are used frequently, but
@@ -63,7 +81,8 @@
 
 //////////////////////////////////////////////////////////////////////////
 
-#define RELEASE_VERSION
+// uncomment this when (and if) Hydra takes over my fork of HydraIRC (dxzl)
+//#define RELEASE_VERSION
 
 #define _CRTDBG_MAP_ALLOC
 #include <stdlib.h>
@@ -105,7 +124,7 @@ extern CAppModule _Module;
 //#include <atlcoll.h>
 //#include <atltypes.h>
 
-// atl should be downloaded and install from here http://www.codeplex.com/AtlServer/
+
 #include <atlrx.h>  // RegExps
 
 /////////////////////////////////////////////////////////////////////////

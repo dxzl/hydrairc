@@ -27,42 +27,11 @@
 
 */
 
-// stdafx.h : include file for standard system include files,
-// or project specific include files that are used frequently, but
-// are changed infrequently
-//
+// stdafx.cpp : source file that includes just the standard includes
+// Plugin.pch will be the pre-compiled header
+// stdafx.obj will contain the pre-compiled type information
 
-#pragma once
+#include "stdafx.h"
 
-#define WINVER		0x0500
-#define _WIN32_IE	0x0501
-#define _RICHEDIT_VER	0x0300
-
-// begin mod dxzl 8/30/2015
-// Add this in atldef.h to keep newer atl from calling LCMapStringEx()
-// (which is only on Vista and up...)
-#define _ATL_XP_TARGETING
-// end mod dxzl 8/30/2015
-
-#define WIN32_LEAN_AND_MEAN		// Exclude rarely-used stuff from Windows headers
-// Windows Header Files:
-#include <atlbase.h>
-
-// TODO: reference additional headers your program requires here
-// ATL/GUI includes start here
-#include <atlcom.h>
-
-#include <atlapp.h>
-extern CAppModule _Module;
-
-#include <atlwin.h>
-#include <atlframe.h>
-#include <atlctrls.h>
-//#include <atlctrlx.h>
-#include <atldlgs.h>
-#include <atlctrlw.h>
-#include <atlsplit.h>
-#include <atlmisc.h>
-
-// enable shorthand use of functions
-#define USE_BASICTABLE_DEFINE
+// TODO: reference any additional headers you need in STDAFX.H
+// and not in this file

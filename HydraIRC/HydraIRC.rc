@@ -7,7 +7,10 @@
 //
 // Generated from the TEXTINCLUDE 2 resource.
 //
-#include "atlres.h"
+// begin mod dxzl 8/2015
+//#include "atlres.h"
+#include "wtl\include\atlres.h"
+// end mod dxzl 8/2015
 
 /////////////////////////////////////////////////////////////////////////////
 #undef APSTUDIO_READONLY_SYMBOLS

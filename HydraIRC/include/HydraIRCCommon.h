@@ -64,6 +64,11 @@
 
 // Add more types here.
 
+// begin mod dxzl 8/2015
+// Bitmask for HIRC_QueryInfo_s.Mask to indicate members are valid
+#define HIRC_QI_OTHERNICK     (1<<0)
+// end mod dxzl 8/2015
+
 // Bitmask for HIRC_ChannelInfo_s.Mask to indicate members are valid
 #define HIRC_CI_NAME          (1<<0)
 #define HIRC_CI_TOPIC         (1<<1)
@@ -89,6 +94,17 @@
 #define OTYPE_CHANNELWINDOWUSERLIST (OTYPE_MISC_FIRST+1)
 #define OTYPE_GLOBALUSERLIST        (OTYPE_MISC_FIRST+2)
 
+
+// begin mod dxzl 8/2015
+typedef struct HIRC_QueryInfo_s
+{
+  int Mask;
+
+  // these pointers are only valid directly after the call. if you want to use it later, copy the data!
+  char *OtherNick;
+  // TODO: Add more things that plugins might need.
+} HIRC_QueryInfo_t;
+// end mod dxzl 8/2015
 
 typedef struct HIRC_ChannelInfo_s
 {
