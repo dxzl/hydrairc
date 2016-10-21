@@ -1,6 +1,6 @@
-; begin mod dxzl 8/2015
+; begin mod S.S. 8/2015
 !addplugindir ".\plugins\x86-ansi"
-; end mod dxzl 8/2015
+; end mod S.S. 8/2015
 
 ;NSIS installer script for HydraIRC
 ;for NSIS version 2.03
@@ -13,7 +13,7 @@
 ; - Suggestions are very welcome.
 ;
 ;Revision 0.8  August 2015
-; dxzl
+; S.S.
 ; - Added UAC stuff to make Hydra's first launch after install User level
 ; instead of Admin level (the level the installer is running at). This is
 ; needed for Windows 7, 8, 10... (see below). Use with nsis-3.0b2. Bumped
@@ -80,7 +80,7 @@
 
 ;Here we go! Installer script starts here :)
 !define PRODUCT "HydraIRC"
-!define VERSION "0.3.165"
+!define VERSION "0.3.167"
 Name "${PRODUCT}"
 
 ;Installer will be compiled into. Don't forget to update VERSION above!
@@ -106,7 +106,7 @@ InstallDirRegKey HKLM "SOFTWARE\HydraProductions\${PRODUCT}" "InstallPath"
 
 ;<start> Modern UI Configuration
 ;-------------------------------
-; begin mod dxzl 8/2015
+; begin mod S.S. 8/2015
 ; Changes I've added allow HydraIRC to launch in user-level access after installing
 ; instead of admin-level. this is important on Windows 7, 8, 10 because of security
 ; scans Windows does AND because if it runs at a different level its user settings
@@ -142,7 +142,7 @@ InstallDirRegKey HKLM "SOFTWARE\HydraProductions\${PRODUCT}" "InstallPath"
 
   SetShellVarContext all
 !macroend
-; end mod dxzl 8/2015
+; end mod S.S. 8/2015
 
 !define MUI_HEADERIMAGE
 !define MUI_HEADERIMAGE_BITMAP "header.bmp"
@@ -227,7 +227,7 @@ Section "${PRODUCT} Main Program Files (Required)" SecCore
   WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\${PRODUCT}" "URLUpdateInfo" "http://www.yahcolorize.com/#HydraIRC"
   WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\${PRODUCT}" "Readme" "$INSTDIR\readme.txt"
   ;WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\${PRODUCT}" "Comments" "The Professional IRC Client"
-  WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\${PRODUCT}" "Comments" "GitHub Fork of HydraIRC by Dxzl"
+  WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\${PRODUCT}" "Comments" "GitHub Fork of HydraIRC by S.S."
   WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\${PRODUCT}" "InstallLocation" "$INSTDIR"
   ;Create uninstaller itself
   WriteUninstaller "uninstall.exe"

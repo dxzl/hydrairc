@@ -1,3 +1,6 @@
+// The GitHub Readme.md (as of 9/1/2015) says this entire project IS
+// now under GPL and the OLD source-code license headers (below) are
+// out-of-date! - Scott Swift
 /*
 
   HydraIRC
@@ -871,14 +874,14 @@ void EscapeString(char *dest, int destlen, char *source)
     if (*source == '\\')
     {
       // turn it from "\" into "\\"
-      x = _snprintf(dest,destlen-dp,"\\\\",*source++);
+      x = _snprintf(dest,destlen-dp,"\\\\%03o",*source++);
       dp += x;
       dest += x;
     }
     else if (!isprint((unsigned char)*source) || *source == '<' || *source == '>' || *source == '&')
     {
-      // convert it to a simple c-style literal string (\ooo)
-      x = _snprintf(dest,destlen-dp,"\\%03o",(unsigned char)(*source++));
+      // convert it to a simple c-style octal literal string (\ooo)
+      x = _snprintf(dest,destlen-dp,"\\%03o",*source++);
       dp += x;
       dest += x;
     }

@@ -1,22 +1,24 @@
 ---------------------------------------------------------------------------------------
-UNRELEASED TEST-VERSION PENDING THE ORIGINAL AUTHOR'S APPROVAL - USE AT YOUR OWN RISK!
+TEST-VERSION OF HYDRA-IRC - USE AT YOUR OWN RISK!
 
-- This is an experimental version for Windows 7, 8 and 10 by Dxzl!
+- This is an experimental version for Windows 7, 8 and 10 by Scott Swift!
+- The latest information we have, from the original HydraIRC github repository's
+  Readme.md, is that the entire HydraIRC project is now under GPL v3.
 - You can find Hydra's original version at www.hydrairc.com
+
 ---------------------------------------------------------------------------------------
-DISCLAIMER 8/31/2015: This is NOT a new distribution of HydraIRC or a derivative
+DISCLAIMER 8/31/2015: This is is NOT a new distribution of HydraIRC or a derivative
 work and there has been no modification of the original author's limited-use
 source license (which dates back to 2006). The author released his project on GitHub,
 possibly with the intention of making it open-source, and may just have not gotten
-around to changing the license-header in all of the source-files, but I had to make
+around to changing the license-header in all of the source-files. I had to make
 a few changes and do one bug-fix so the HydraIRC chat-client would work with my own
 program, YahCoLoRiZe. And in doing that, I had to upgrade the project to work
 with current software tools and libraries (a significant amount of work).
-So, for the time-being, this repository is NOT for distribution without permission
-from Dominic Clifton (aka Hydra). I also wrote my own plugin for HydraIRC which is
-included in my GitHub branch of a fork off the original HydraIRC project. My own work
-on HydraIRC is freely-distributable and is "open-source". My fork of HydraIRC is
-my first attempt to use GitHub and is an unreleased work-in-progress...
+I also wrote my own plugin for HydraIRC which is included in my GitHub branch of a
+fork off the original HydraIRC project. My own work on HydraIRC is freely-distributable
+and is "open-source". My fork of HydraIRC is my first attempt to use GitHub and is
+an unreleased work-in-progress...
 
 WHAT I'VE CHANGED:
 

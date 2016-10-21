@@ -1,3 +1,14 @@
+-------------------------------------------------------------------------
+As of 10/21/2016, compiling this on Visual Studio Community 2015, the
+GitHub Readme.md says this entire project IS now under GPL, I've seen no
+activity by Dominic and I did try to contact him and recieved no
+response... meanwhile, my github fork just sat there gathering e-dust,
+so I am going to release my version (which took much effort and hard work)
+as its own distribution, under GPL v3. - Scott Swift
+
+The text below is from the original distribution:
+-------------------------------------------------------------------------
+
 License & Distribution Rights
 =============================
 

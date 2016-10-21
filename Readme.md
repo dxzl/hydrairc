@@ -1,5 +1,8 @@
 # HydraIRC
 
+This is Scott Swift's distribution of HydraIRC, with some bug-fixes and changes to accomodate his
+plugin for YahCoLoRiZe. The entire project is, as far as is known, now under the GPL v3 license.
+
 HydraIRC is an IRC client for windows.
 
 ## Reporting bugs

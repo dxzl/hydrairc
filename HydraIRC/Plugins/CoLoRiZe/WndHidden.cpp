@@ -1,3 +1,6 @@
+// The GitHub Readme.md (as of 9/1/2015) says this entire project IS
+// now under GPL.  I authored this YahCoLoRiZe Plugin - Scott Swift
+//
 // WinHidden.cpp : Creates a hidden window that processes WM_COPYDATA
 //
 

@@ -1,3 +1,6 @@
+// The GitHub Readme.md (as of 9/1/2015) says this entire project IS
+// now under GPL and the OLD source-code license headers (below) are
+// out-of-date! - Scott Swift
 /*
 
   HydraIRC
@@ -27,8 +30,8 @@
 
 */
 
-#define VERSIONNUM "v0.3.165"
-#define VERSIONDATE "(1/September/2015)"
+#define VERSIONNUM "v0.3.167"
+#define VERSIONDATE "(10/October/2016)"
 
 #ifdef RELEASE_VERSION
 #define VERSIONSTRING_EXTRA_1 ""

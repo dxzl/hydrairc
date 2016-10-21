@@ -13,5 +13,5 @@ To build HydraIRC just right-click "HydraIRC Installer.nsi" and select
 "Compile NSIS Script". The output-file, HydraIRC-v0.3.165-Release.exe,
 will be in the Distribution folder.
 
-- dxzl
+- Scott Swift
 ========================================================================

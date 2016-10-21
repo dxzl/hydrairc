@@ -1,5 +1,6 @@
 HydraIRC                                          
-(Update for Visual Studio 2015 Community Edition by dxzl 8/31/2015)
+Update for Visual Studio 2015 Community Edition by Scott Swift 8/31/2015
+The text below is from the original distribution:
 ==============================================================================
 
 Noob?

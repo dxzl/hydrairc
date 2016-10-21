@@ -1,3 +1,5 @@
+Note: October 21, 2016 I had not built this in a while... it builds ok as-is with Visual Studio
+Community 2015 but be sure to USE THE RELEASE TARGET, NOT THE DEBUG!!!!!
 ---------------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------------
 DISCLAIMER 8/31/2015: This is NOT a new distribution of HydraIRC or a "derivative

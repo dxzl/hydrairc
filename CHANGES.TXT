@@ -1,8 +1,14 @@
 ---------------------------------------------------------------------------------------
 UNRELEASED TEST-VERSION PENDING THE ORIGINAL AUTHOR'S APPROVAL - USE AT YOUR OWN RISK!
 
-- This is an experimental version for Windows 7, 8 and 10 by Dxzl!
+- This is an experimental version for Windows 7, 8 and 10 by Scott Swift!
 - You can find Hydra's original version at www.hydrairc.com
+---------------------------------------------------------------------------------------
+As of 10/21/2016, compiling this on Visual Studio Community 2015, the GitHub Readme.md
+says this entire project IS now under GPL, I've seen no activity By Dominic Clifton
+and I did try to contact him and recieved no response... meanwhile, my fork just sat
+there gathering e-dust, so I am going to release my version (which took
+much effort and hard work) as its own distribution, under GPL v3. - Scott Swift
 ---------------------------------------------------------------------------------------
 DISCLAIMER 8/31/2015: This is NOT a new distribution of HydraIRC or a derivative
 work and there has been no modification of the original author's limited-use
@@ -40,7 +46,7 @@ window ID. this was to allow YahCoLoRiZe to receive /cx text commands from
 a user in a query-session and to then send colorized text back to the proper
 window.
 
-- dxzl (aka Scott): dxzl@live.com.
+- Scott Swift: dxzl@live.com.
 ---------------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------------
 

@@ -1,0 +1,23 @@
+(out of date! S.S.)
+Wed Nov 13 14:40:58 2013 - INFO - *** HydraIRC v0.3.164 (10/July/2008) Started ***
+Wed Nov 13 14:40:58 2013 - INFO - Richedit Version 5.30.23.1230
+Wed Nov 13 14:41:23 2013 - INFO - *** HydraIRC v0.3.164 (10/July/2008) Stopped ***
+Fri Nov 15 17:06:24 2013 - INFO - *** HydraIRC v0.3.165-Debug (12/December/2008) Started ***
+Fri Nov 15 17:06:24 2013 - INFO - Richedit Version 5.30.23.1230
+Fri Nov 15 17:06:41 2013 - INFO - *** HydraIRC v0.3.165-Debug (12/December/2008) Stopped ***
+Fri Nov 15 17:15:18 2013 - INFO - *** HydraIRC v0.3.165-Debug (12/December/2008) Started ***
+Fri Nov 15 17:15:18 2013 - INFO - Richedit Version 5.30.23.1230
+Fri Nov 15 20:37:56 2013 - INFO - *** HydraIRC v0.3.165-Debug (12/December/2008) Started ***
+Fri Nov 15 20:37:56 2013 - INFO - Richedit Version 5.30.23.1230
+Fri Nov 15 20:38:44 2013 - INFO - *** HydraIRC v0.3.165-Debug (12/December/2008) Stopped ***
+Fri Nov 15 20:50:14 2013 - INFO - *** HydraIRC v0.3.165-Debug (12/December/2008) Started ***
+Fri Nov 15 20:50:14 2013 - INFO - Richedit Version 5.30.23.1230
+Fri Nov 15 20:50:20 2013 - INFO - *** HydraIRC v0.3.165-Debug (12/December/2008) Stopped ***
+Fri Nov 15 22:31:59 2013 - INFO - *** HydraIRC v0.3.165-Debug (12/December/2008) Started ***
+Fri Nov 15 22:31:59 2013 - INFO - Richedit Version 5.30.23.1230
+Fri Nov 15 22:34:06 2013 - INFO - *** HydraIRC v0.3.165-Debug (12/December/2008) Started ***
+Fri Nov 15 22:34:06 2013 - INFO - Richedit Version 5.30.23.1230
+Fri Nov 15 22:34:55 2013 - INFO - *** HydraIRC v0.3.165-Debug (12/December/2008) Stopped ***
+Fri Nov 15 22:52:08 2013 - INFO - *** HydraIRC v0.3.165-Debug (12/December/2008) Started ***
+Fri Nov 15 22:52:08 2013 - INFO - Richedit Version 5.30.23.1230
+Fri Nov 15 22:53:40 2013 - INFO - *** HydraIRC v0.3.165-Debug (12/December/2008) Stopped ***

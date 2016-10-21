@@ -1,3 +1,6 @@
+// The GitHub Readme.md (as of 9/1/2015) says this entire project IS
+// now under GPL and the OLD source-code license headers (below) are
+// out-of-date! - Scott Swift
 /*
 
   HydraIRC
@@ -4158,7 +4161,7 @@ BOOL IRCServer::CMD_CTCPReply(const char *to, const char *format, ...)
   {
     time_t now;
     time(&now);
-    sprintf(CTCPBuf, "PING %d", now);
+    sprintf(CTCPBuf, "PING %d", (int)now);
   }
 
   Send("NOTICE %s :\001%s\001\r\n",to, CTCPBuf);
@@ -4190,7 +4193,7 @@ BOOL IRCServer::CMD_CTCPRequest(const char *to, const char *format, ...)
   {
     time_t now;
     time(&now);
-    sprintf(CTCPBuf, "PING %d", now);
+    sprintf(CTCPBuf, "PING %d", (int)now);
   }
 
   Send("PRIVMSG %s :\001%s\001\r\n",to, CTCPBuf);

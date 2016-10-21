@@ -1,4 +1,4 @@
-TODO.TXT
+TODO.TXT (out of date - S.S.)
 ========
 
 *** See the end of this document for the list of Known bugs ***
